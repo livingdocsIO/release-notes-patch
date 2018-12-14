@@ -15,6 +15,6 @@ npx github:DaRaFF/release-notes-patch \
   --token='gh-token' \
   --owner=livingdocsIO \
   --repo=livingdocs-server \
-  --sha=29d528db124df6e4fce1b4f9f4232e17d8776ccd
+  --sha=29d528db124df6e4fce1b4f9f4232e17d8776ccd \
   --tag=v75.15.5
 ```

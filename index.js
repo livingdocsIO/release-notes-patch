@@ -29,6 +29,10 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
     message: release.message
   })
 
+  if (!parsedReleaseNotes) {
+    return `livingdocs-release-notes are not updated, because ${tag} is already in releases/${release.branchName}.md`
+  }
+
   await o.updateFile({
     owner: 'livingdocsIO',
     repo: 'livingdocs-release-notes',
