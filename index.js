@@ -21,15 +21,21 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
     return `file releases/${release.branchName}.md not found in livingdocs-release-notes`
   }
 
-  const parsedReleaseNotes = parseReleaseNotes({
+
+  // base64 to string
+  const originReleaseNote = Buffer.from(releaseNote.data.content, 'base64').toString('utf8')
+
+  const parsedReleaseNote = parseReleaseNotes({
     owner,
     repo,
-    releaseNotesBase64: releaseNote.data.content,
+    releaseNote: originReleaseNote,
     tag,
     message: release.message
   })
 
-  if (!parsedReleaseNotes) {
+  const parsedBase64ReleaseNote = Buffer.from(parsedReleaseNote).toString('base64')
+
+  if (!parsedBase64ReleaseNote) {
     return `livingdocs-release-notes are not updated, because ${tag} is already in releases/${release.branchName}.md`
   }
 
@@ -38,7 +44,7 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
     repo: 'livingdocs-release-notes',
     path: `releases/${release.branchName}.md`,
     message: `chore: update patch release notes of ${release.branchName}.md with tag ${tag}`,
-    content: parsedReleaseNotes,
+    content: parsedBase64ReleaseNote,
     sha: releaseNote.data.sha
   })
 
