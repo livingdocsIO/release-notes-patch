@@ -5,9 +5,7 @@
   "main": "index.js",
   "bin": "./cli.js",
   "scripts": {
-    "test": "tap test/*.js",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "test": "tap test/*.js"
   },
   "author": "Ralph Meier",
   "license": "ISC",
@@ -16,16 +14,17 @@
     "yargs": "^12.0.2"
   },
   "private": true,
-  "publishConfig": {
-    "private": "true"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/DaRaFF/release-notes-patch.git"
   },
   "devDependencies": {
-    "semantic-release": "^15.12.5",
-    "tap": "^12.5.3",
-    "travis-deploy-once": "^5.0.10"
+    "tap": "^12.5.3"
+  },
+  "publishConfig": {
+    "private": "true"
+  },
+  "release": {
+    "extends": "@livingdocs/semantic-release-presets/github-verify"
   }
 }
