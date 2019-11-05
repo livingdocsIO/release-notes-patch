@@ -11,4 +11,5 @@ run(argv)
   })
   .catch((e) => {
     console.log(e.message)
+    process.exit(1)
   })

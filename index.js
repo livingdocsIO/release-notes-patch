@@ -8,7 +8,6 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
   const o = new Octokit(token)
 
   const release = await getReleaseByCommit({owner, repo, sha, octokit: o})
-  if (!release) return `release with sha ${sha} in repo ${owner}/${repo} not found`
 
   const releaseNote = await getReleaseNote({
     owner: 'livingdocsIO',
@@ -16,11 +15,6 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
     path: `releases/${release.branchName}.md`,
     octokit: o
   })
-
-  if (!releaseNote) {
-    return `file releases/${release.branchName}.md not found in livingdocs-release-notes`
-  }
-
 
   // base64 to string
   const originReleaseNote = Buffer.from(releaseNote.data.content, 'base64').toString('utf8')
@@ -36,9 +30,9 @@ module.exports = async ({token, owner, repo, sha, tag}) => {
   const parsedBase64ReleaseNote = Buffer.from(parsedReleaseNote).toString('base64')
 
   if (!parsedBase64ReleaseNote) {
-    return `livingdocs-release-notes are not updated, because ${tag} is already in releases/${release.branchName}.md`
+    throw(new Error(`livingdocs-release-notes are not updated, because ${tag} is already in releases/${release.branchName}.md`))
   }
-
+  
   await o.updateFile({
     owner: 'livingdocsIO',
     repo: 'livingdocs-release-notes',
