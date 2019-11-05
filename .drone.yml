@@ -1,7 +1,6 @@
 ---
 kind: pipeline
 name: test
-depends_on: [build-test]
 
 steps:
 - name: test
@@ -26,6 +25,7 @@ trigger:
 ---
 kind: pipeline
 name: tag
+depends_on: [test]
 
 clone:
   depth: 100
