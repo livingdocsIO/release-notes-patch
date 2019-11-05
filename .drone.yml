@@ -41,6 +41,6 @@ trigger:
   event: [push]
 ---
 kind: signature
-hmac: 8da774f9e772d59029875c3612df3da997ad776883f8d941ad6a0dbd3f7eb1c1
+hmac: 45cd47b3a9a28ea69ff40a0fcc349dd9ffb46e0f1570c5406ca6c9739271a126
 
 ...
