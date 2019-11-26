@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.2.1')
+console.log('release-notes-patch -> v1.2.2')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
+  .help(false)
+  .version(false)
   .argv
 const run = require('./index')
 
