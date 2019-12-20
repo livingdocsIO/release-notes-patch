@@ -10,7 +10,7 @@ const branches = [
   'release-2019-05',
   'release-2019-07',
   'release-2019-09',
-  'release-2019-11',
+  'release-2019-12',
   'release-2020-01',
   'release-2020-02',
   'release-2020-03',
