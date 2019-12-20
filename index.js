@@ -1,3 +1,4 @@
+const moment = require('moment')
 const Octokit = require('./lib/octokit')
 const getReleaseByCommit = require('./lib/get_release_by_commit')
 const getReleaseNote = require('./lib/get_release_note')
