@@ -3,27 +3,12 @@ const getReleaseByCommit = require('./lib/get_release_by_commit')
 const getReleaseNote = require('./lib/get_release_note')
 const parseReleaseNotes = require('./lib/parse_release_notes')
 
-// TODO: make the list dynamic (adapting the current time)
-const branches = [
-  'release-2019-01',
-  'release-2019-03',
-  'release-2019-05',
-  'release-2019-07',
-  'release-2019-09',
-  'release-2019-12',
-  'release-2020-01',
-  'release-2020-02',
-  'release-2020-03',
-  'release-2020-04',
-  'release-2020-05',
-  'release-2020-06',
-  'release-2020-07',
-  'release-2020-08',
-  'release-2020-09',
-  'release-2020-10',
-  'release-2020-11',
-  'release-2020-12'
-]
+
+const createBranchList = require('../lib/create_branch_list')
+const branches = createBranchList({
+  time: moment(Date.now()).format('YYYY-MM'),
+  months: {before: 8, after: 4}
+})
 
 // main application
 module.exports = async ({token, owner, repo, sha, tag} = {}) => {

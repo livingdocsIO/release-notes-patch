@@ -5,12 +5,14 @@
   "main": "index.js",
   "bin": "./cli.js",
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap test/*.js",
+    "test:watch": "tap --watch test/*.js"
   },
   "author": "Ralph Meier",
   "license": "ISC",
   "dependencies": {
     "@octokit/rest": "16.2.0",
+    "moment": "^2.24.0",
     "yargs": "^12.0.2"
   },
   "private": true,
@@ -19,7 +21,7 @@
     "url": "https://github.com/DaRaFF/release-notes-patch.git"
   },
   "devDependencies": {
-    "tap": "^12.5.3"
+    "tap": "^14.10.5"
   },
   "publishConfig": {
     "private": "true"
