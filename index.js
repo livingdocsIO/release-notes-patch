@@ -4,7 +4,7 @@ const getReleaseNote = require('./lib/get_release_note')
 const parseReleaseNotes = require('./lib/parse_release_notes')
 
 
-const createBranchList = require('../lib/create_branch_list')
+const createBranchList = require('./lib/create_branch_list')
 const branches = createBranchList({
   time: moment(Date.now()).format('YYYY-MM'),
   months: {before: 8, after: 4}
