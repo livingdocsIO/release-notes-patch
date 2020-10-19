@@ -19,11 +19,12 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
   }
 
   const path = `releases/${release.branchName}.md`
-  const releaseNote = await getReleaseNote({
+  const {releaseNote, branchName} = await getReleaseNote({
     owner: 'livingdocsIO',
     repo: 'livingdocs-release-notes',
     path,
-    token
+    token,
+    releaseName: release.branchName
   })
 
   // base64 to string
@@ -47,7 +48,8 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
     path,
     message: `chore: update patch release notes of ${release.branchName}.md with tag ${tag}`,
     content: parsedBase64ReleaseNote,
-    sha: releaseNote.sha
+    sha: releaseNote.sha,
+    branch: branchName
   })
 
   return `update of release-notes with tag ${tag} at ${releaseNote.html_url} sucessfull`

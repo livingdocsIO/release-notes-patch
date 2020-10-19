@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.2.7 (removed octokit)')
+console.log('release-notes-patch -> v1.3.0 (patch commit for open branches too)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
