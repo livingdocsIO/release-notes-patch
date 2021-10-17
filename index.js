@@ -11,6 +11,11 @@ const branches = createBranchList({
   months: {before: 8, after: 4}
 })
 
+const targetOwner = 'livingdocsIO'
+const targetRepo = 'documentation'
+const targetBasePath = 'content/operations/releases'
+
+
 // main application
 module.exports = async ({token, owner, repo, sha, tag} = {}) => {
   const release = await getReleaseByCommit({owner, repo, sha, token, branches})
@@ -18,10 +23,10 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
     return `commit ${sha} not found in ${owner}/${repo} in the white listed release branches \n\r${branches.join('\n\r')}`
   }
 
-  const path = `releases/${release.branchName}.md`
+  const path = `${targetBasePath}/${release.branchName}.md`
   const {releaseNote, branchName} = await getReleaseNote({
-    owner: 'livingdocsIO',
-    repo: 'livingdocs-release-notes',
+    owner: targetOwner,
+    repo: targetRepo,
     path,
     token,
     releaseName: release.branchName
@@ -42,11 +47,11 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
   const parsedBase64ReleaseNote = Buffer.from(parsedReleaseNote).toString('base64')
 
   await updateContent({
-    owner: 'livingdocsIO',
-    repo: 'livingdocs-release-notes',
+    owner: targetOwner,
+    repo: targetRepo,
     token,
     path,
-    message: `chore: update patch release notes of ${release.branchName}.md with tag ${tag}`,
+    message: `fix(${release.branchName}): add patch to ${release.branchName}.md with tag ${tag}`,
     content: parsedBase64ReleaseNote,
     sha: releaseNote.sha,
     branch: branchName

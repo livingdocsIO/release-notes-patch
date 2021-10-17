@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.3.0 (patch commit for open branches too)')
+console.log('release-notes-patch -> v1.4.0 (move to doc repo)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
