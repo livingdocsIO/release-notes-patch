@@ -1,11 +1,11 @@
 const fs = require('fs')
 const tap = require('tap')
-const parseReleaseNotes = require('../lib/parse_release_notes')
+const addPatchToReleaseNote = require('../lib/add-patch-to-release-note')
 const before = fs.readFileSync('./test/fixtures/release-note-before.md', 'utf8')
 const after = fs.readFileSync('./test/fixtures/release-note-after.md', 'utf8')
 
 // default parse case
-const parsedEditor = parseReleaseNotes({
+const parsedEditor = addPatchToReleaseNote({
   owner: 'livingdocsIO',
   repo: 'livingdocs-editor',
   releaseNote: before,
@@ -13,7 +13,7 @@ const parsedEditor = parseReleaseNotes({
   message: 'fix: fixed an editor bug'
 })
 
-const parsed = parseReleaseNotes({
+const parsed = addPatchToReleaseNote({
   owner: 'livingdocsIO',
   repo: 'livingdocs-server',
   releaseNote: parsedEditor,
@@ -28,7 +28,7 @@ tap.equal(parsed, after)
 const inputWithoutV = `"@livingdocs/server": "75.17.2",`
 const expectedWithoutV = `"@livingdocs/server": "v75.17.3",`
 
-const actualWithoutV = parseReleaseNotes({
+const actualWithoutV = addPatchToReleaseNote({
   owner: 'livingdocsIO',
   repo: 'livingdocs-server',
   releaseNote: inputWithoutV,
@@ -43,7 +43,7 @@ tap.equal(actualWithoutV, expectedWithoutV)
 const inputWithV = `"@livingdocs/server": "v75.17.2",`
 const expectedWithV = `"@livingdocs/server": "v75.17.3",`
 
-const actualWithV = parseReleaseNotes({
+const actualWithV = addPatchToReleaseNote({
   owner: 'livingdocsIO',
   repo: 'livingdocs-server',
   releaseNote: inputWithV,

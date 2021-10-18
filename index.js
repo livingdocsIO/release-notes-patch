@@ -1,11 +1,11 @@
 const moment = require('moment')
-const getReleaseByCommit = require('./lib/get_release_by_commit')
-const getReleaseNote = require('./lib/get_release_note')
-const parseReleaseNotes = require('./lib/parse_release_notes')
-const updateContent = require('./lib/git/update_content')
+const getReleaseByCommit = require('./lib/get-release-by-commit')
+const getReleaseNote = require('./lib/get-release-note')
+const addPatchToReleaseNote = require('./lib/add-patch-to-release-note')
+const updateContent = require('./lib/git/update-content')
 
 
-const createBranchList = require('./lib/create_branch_list')
+const createBranchList = require('./lib/create-branch-list')
 const branches = createBranchList({
   time: moment(Date.now()).format('YYYY-MM'),
   months: {before: 8, after: 4}
@@ -35,7 +35,7 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
   // base64 to string
   const originReleaseNote = Buffer.from(releaseNote.content, 'base64').toString('utf8')
 
-  const parsedReleaseNote = parseReleaseNotes({
+  const patchedReleaseNotes = addPatchToReleaseNote({
     owner,
     repo,
     releaseNote: originReleaseNote,
@@ -44,7 +44,7 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
     message: release.message
   })
 
-  const parsedBase64ReleaseNote = Buffer.from(parsedReleaseNote).toString('base64')
+  const patchedBase64ReleaseNotes = Buffer.from(patchedReleaseNotes).toString('base64')
 
   await updateContent({
     owner: targetOwner,
@@ -52,7 +52,7 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
     token,
     path,
     message: `fix(${release.branchName}): add patch to ${release.branchName}.md with tag ${tag}`,
-    content: parsedBase64ReleaseNote,
+    content: patchedBase64ReleaseNotes,
     sha: releaseNote.sha,
     branch: branchName
   })

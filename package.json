@@ -22,7 +22,7 @@
     "url": "https://github.com/DaRaFF/release-notes-patch.git"
   },
   "devDependencies": {
-    "tap": "^14.10.5"
+    "tap": "^15.0.10"
   },
   "publishConfig": {
     "private": "true"

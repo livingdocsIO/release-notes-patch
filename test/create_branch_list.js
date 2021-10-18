@@ -1,5 +1,5 @@
 const tap = require('tap')
-const createBranchList = require('../lib/create_branch_list')
+const createBranchList = require('../lib/create-branch-list')
 
 // one month before and after
 const branchList = createBranchList({
