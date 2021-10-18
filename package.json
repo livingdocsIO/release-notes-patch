@@ -5,8 +5,8 @@
   "main": "index.js",
   "bin": "./cli.js",
   "scripts": {
-    "test": "tap test/*.js",
-    "test:watch": "tap --watch test/*.js"
+    "test": "tap **/*.test.js",
+    "test:watch": "tap --watch **/*.test.js"
   },
   "author": "Ralph Meier",
   "license": "ISC",
