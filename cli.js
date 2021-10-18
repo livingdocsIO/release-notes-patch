@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.4.0 (move to doc repo)')
+console.log('release-notes-patch -> v1.5.0 (add auto draft updates)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
