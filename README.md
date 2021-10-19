@@ -40,7 +40,7 @@ name: release
 
 steps:
 - name: release-notes-patch
-  image: livingdocs/server-base:16.0
+  image: livingdocs/node:16
   commands:
     - |
       npx github:livingdocsIO/release-notes-patch \
