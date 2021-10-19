@@ -1,13 +1,23 @@
 # Scope
 
-add a release-notes patch to the release-notes of Livingdocs.
+This repository provides a npx script to patch the release notes in our documentation repository.
 
-Even when it's public, this is a higly individual repository and is useless for others to use.
+## Use Case 1 - Released Releases
 
-# Example
+**Goal:** Update the patches section of the release notes so customers know the latest version of a release and what has been fixed
 
-### via CLI
+**How:** With every merge to a github branch with the pattern `release-YYYY-MM` on the `livingdocs-server` and `livingdocs-editor`, the script gets the PR information and pushes it to the [patches](https://docs.livingdocs.io/operations/releases/release-2021-09/#patches) section of the release notes in the documentation repository.
 
+
+## Use Case 2 - Upcoming Release
+
+**Goal:** Add every merge to master to the upcoming release notes to simplify the preparation for the next release
+
+**How:** With every merge to `master` on the `livingdocs-server` and `livingdocs-editor`, the script gets the PR information and pushes it on top of the [upcoming release](https://docs.livingdocs.io/operations/releases/master/) in the documentation repository.
+
+# Usage
+
+## via CLI
 
 ```bash
 # tag = tag of the patch
@@ -20,6 +30,29 @@ npx github:DaRaFF/release-notes-patch \
   --tag=v75.15.5
 ```
 
-# Important
+## via CI (drone)
 
-When the commit is found/not found, the script exits always with 0. The reason for that is when running the script, we don't know the branch name (it's running based on a tag).
+```bash
+---
+kind: pipeline
+type: docker
+name: release
+
+steps:
+- name: release-notes-patch
+  image: livingdocs/server-base:16.0
+  commands:
+    - |
+      npx github:livingdocsIO/release-notes-patch \
+        --token=$GH_TOKEN \
+        --owner=livingdocsIO \
+        --repo=livingdocs-server \
+        --sha=$DRONE_COMMIT_SHA \
+        --tag=$DRONE_TAG
+  environment:
+    GH_TOKEN:
+      from_secret: gh_token
+
+trigger:
+  event: [tag]
+```
