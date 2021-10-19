@@ -11,9 +11,8 @@
   "author": "Ralph Meier",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.23.0",
     "moment": "^2.24.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5",
     "yargs": "^12.0.2"
   },
   "private": true,
