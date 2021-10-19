@@ -30,6 +30,13 @@ npx github:livingdocsIO/release-notes-patch \
   --tag=v75.15.5
 ```
 
+```bash
+# no commit - updated release-notes go to stdout
+npx github:DaRaFF/release-notes-patch \
+  ...
+  --test=true
+```
+
 ## via CI (drone)
 
 ```bash

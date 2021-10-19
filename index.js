@@ -21,7 +21,7 @@ const targetBasePath = 'content/operations/releases'
 
 
 // main application
-module.exports = async ({token, owner, repo, sha, tag} = {}) => {
+module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
   const release = await getReleaseByCommit({owner, repo, sha, token, branches})
   if (!release) {
     return `commit ${sha} not found in ${owner}/${repo} in the white listed release branches \n\r${branches.join('\n\r')}`
@@ -63,6 +63,9 @@ module.exports = async ({token, owner, repo, sha, tag} = {}) => {
   }
 
   const patchedBase64ReleaseNotes = Buffer.from(patchedReleaseNotes).toString('base64')
+
+  // in test mode, show new relase-notes in console
+  if (test) return patchedReleaseNotes
 
   await updateContent({
     owner: targetOwner,
