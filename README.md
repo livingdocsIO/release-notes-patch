@@ -31,7 +31,7 @@ npx github:livingdocsIO/release-notes-patch \
 ```
 
 ```bash
-# no commit - updated release-notes go to stdout
+# in test mode the change will not be commited to the release-notes
 npx github:DaRaFF/release-notes-patch \
   ...
   --test=true

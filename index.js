@@ -64,8 +64,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
 
   const patchedBase64ReleaseNotes = Buffer.from(patchedReleaseNotes).toString('base64')
 
-  // in test mode, show new relase-notes in console
-  if (test) return patchedReleaseNotes
+  if (test) return `TEST MODE: do not commit changes`
 
   await updateContent({
     owner: targetOwner,
