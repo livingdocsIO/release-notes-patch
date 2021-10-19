@@ -22,7 +22,7 @@ This repository provides a npx script to patch the release notes in our document
 ```bash
 # tag = tag of the patch
 # sha = sha of the patch
-npx github:DaRaFF/release-notes-patch \
+npx github:livingdocsIO/release-notes-patch \
   --token='gh-token' \
   --owner=livingdocsIO \
   --repo=livingdocs-server \
