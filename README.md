@@ -32,7 +32,7 @@ npx github:livingdocsIO/release-notes-patch \
 
 ```bash
 # in test mode the change will not be commited to the release-notes
-npx github:DaRaFF/release-notes-patch \
+npx github:livingdocsIO/release-notes-patch \
   ...
   --test=true
 ```
