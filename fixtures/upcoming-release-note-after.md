@@ -2,7 +2,9 @@
 title: release-2021-09
 description: Release notes for release-2021-09
 ---
-* :new: fix: fixed an editor bug [livingdocs-editor #99 v35.24.3](https://github.com/livingdocsIO/livingdocs-editor/pull/99) :gift:
+
+## PRs to Categorize
+* :new: fix: fixed an editor bug [livingdocs-editor #99 v35.24.3](https://github.com/livingdocsIO/livingdocs-editor/pull/99)
 
 **Attention:** If you skipped one or more releases, please also check the release-notes of the skipped ones.
 
