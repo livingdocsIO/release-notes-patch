@@ -19,6 +19,8 @@ This repository provides a npx script to patch the release notes in our document
 
 ## via CLI
 
+Currently only works with node 14, until this [bug](https://github.com/npm/cli/issues/5134) has been fixed.
+
 ```bash
 # tag = tag of the patch
 # sha = sha of the patch
