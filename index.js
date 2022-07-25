@@ -90,7 +90,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
     path: 'data/releases.json',
     message: `fix(${release.branchName}): update release notes overview for ${release.branchName} for ${repo} with tag ${tag}`,
     content: patchedBase64ReleaseNotesOverview,
-    sha: releaseNotesOverviewSha.sha,
+    sha: releaseNotesOverviewSha,
     branch: branchName
   })
 
