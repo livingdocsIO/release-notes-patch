@@ -5,6 +5,7 @@ const getPullBySha = require('./lib/git/get-pull-by-sha')
 const addPatchToReleaseNote = require('./lib/add-patch-to-release-note')
 const addPatchToUpcomingReleaseNote = require('./lib/add-patch-to-upcoming-release-note')
 const updateContent = require('./lib/git/update-content')
+const patchReleaseNotesOverview = require('./patch-release-notes-overview')
 
 
 const createBranchList = require('./lib/create-branch-list')
@@ -41,7 +42,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
   const originReleaseNote = Buffer.from(releaseNote.content, 'base64').toString('utf8')
 
   let patchedReleaseNotes
-  // patch release notes for upcoming release
+  // patch release notes detail for upcoming release
   if (release.branchName === 'master') {
     const pull = await getPullBySha({owner, repo, token, sha})
     patchedReleaseNotes = addPatchToUpcomingReleaseNote({
@@ -51,7 +52,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
       path,
       pull
     })
-  // patch release notes of official releases
+  // patch release notes detail of official releases
   } else {
     patchedReleaseNotes = addPatchToReleaseNote({
       owner,
@@ -65,8 +66,11 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
 
   const patchedBase64ReleaseNotes = Buffer.from(patchedReleaseNotes).toString('base64')
 
+  const {patchedBase64ReleaseNotesOverview, releaseNotesOverviewSha, releaseNotesOverviewHtml} = await patchReleaseNotesOverview({token, owner, repo, sha, tag, test, release})
+
   if (test) return `TEST MODE: do not commit changes`
 
+  // update release notes detail
   await updateContent({
     owner: targetOwner,
     repo: targetRepo,
@@ -78,5 +82,18 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
     branch: branchName
   })
 
-  return `update of release-notes with tag ${tag} at ${releaseNote.html_url} sucessfull`
+  // update release notes overview
+  await updateContent({
+    owner: targetOwner,
+    repo: targetRepo,
+    token,
+    path: 'data/releases.json',
+    message: `fix(${release.branchName}): update release notes overview for ${release.branchName} for ${repo} with tag ${tag}`,
+    content: patchedBase64ReleaseNotesOverview,
+    sha: releaseNotesOverviewSha.sha,
+    branch: branchName
+  })
+
+  return `update of release-notes with tag ${tag} at ${releaseNote.html_url} sucessfull\n\n` +
+    `update of release-notes overview with tag ${tag} at ${releaseNotesOverviewHtml} sucessfull`
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.5.5 (changed upcoming release format (PRs to categorize))')
+console.log('release-notes-patch -> v1.5.6 (update release notes overview)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
