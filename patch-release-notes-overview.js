@@ -26,7 +26,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false, release} = 
     console.log(`\n\nUpdate Release Notes overview: Set '${release.branchName}.serverVersion' to ${tag}\n\n`)
   }
 
-  const patchedBase64Content = Buffer.from(JSON.stringify(patchedContent)).toString('base64')
+  const patchedBase64ReleaseNotesOverview = Buffer.from(JSON.stringify(patchedContent)).toString('base64')
 
-  return {patchedBase64Content, releaseNotesOverviewSha: releaseNote.sha, releaseNotesOverviewHtml: releaseNote.html_url}
+  return {patchedBase64ReleaseNotesOverview, releaseNotesOverviewSha: releaseNote.sha, releaseNotesOverviewHtml: releaseNote.html_url}
 }
