@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.5.8 (update release notes overview - with fixes)')
+console.log('release-notes-patch -> v1.5.9 (beautify data/releases.json)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
