@@ -28,8 +28,8 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
     return `commit ${sha} not found in ${owner}/${repo} in the white listed release branches \n\r${branches.join('\n\r')}`
   }
 
-  // 'content/operations/releases/release-2021-03/release-2021-03.md'
-  const path = `${targetBasePath}/${release.branchName}/${release.branchName}.md`
+  // 'content/operations/releases/release-2021-03.md'
+  const path = `${targetBasePath}/${release.branchName}.md`
   const {releaseNote, branchName} = await getReleaseNote({
     owner: targetOwner,
     repo: targetRepo,
