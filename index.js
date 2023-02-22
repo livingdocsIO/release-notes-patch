@@ -60,7 +60,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
 
   const patchedBase64ReleaseNotes = Buffer.from(patchedReleaseNotes).toString('base64')
 
-  const {patchedBase64ReleaseNotesOverview, releaseNotesOverviewSha, releaseNotesOverviewHtml} = await patchReleaseNotesOverview({token, owner, repo, sha, tag, test, release})
+  const {patchedBase64ReleaseNotesOverview, releaseNotesOverviewSha, releaseNotesOverviewHtml} = await patchReleaseNotesOverview({token, repo, tag, release})
 
   if (test) return `TEST MODE: do not commit changes`
 
