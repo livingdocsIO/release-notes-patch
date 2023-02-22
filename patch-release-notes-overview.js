@@ -5,13 +5,7 @@ const targetRepo = 'documentation'
 
 module.exports = async ({token, owner, repo, sha, tag, test = false, release} = {}) => {
   const path = `data/releases.json`
-  const {releaseNote, branchName} = await getReleaseNote({
-    owner: targetOwner,
-    repo: targetRepo,
-    path,
-    token,
-    releaseName: release.branchName
-  })
+  const releaseNote = await getReleaseNote({owner: targetOwner, repo: targetRepo, path, token})
 
   // base64 to string
   const originContent = JSON.parse(Buffer.from(releaseNote.content, 'base64').toString('utf8'))

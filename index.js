@@ -30,13 +30,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
 
   // 'content/operations/releases/release-2021-03.md'
   const path = `${targetBasePath}/${release.branchName}.md`
-  const {releaseNote, branchName} = await getReleaseNote({
-    owner: targetOwner,
-    repo: targetRepo,
-    path,
-    token,
-    releaseName: release.branchName
-  })
+  const releaseNote = await getReleaseNote({owner: targetOwner, repo: targetRepo, path, token})
 
   // base64 to string
   const originReleaseNote = Buffer.from(releaseNote.content, 'base64').toString('utf8')
