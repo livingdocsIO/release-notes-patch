@@ -41,6 +41,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
   // patch release notes detail for upcoming release
   if (release.branchName === 'master') {
     const pull = await getPullBySha({owner, repo, token, sha})
+    if (!pull) return `Release notes will not be extended, because no PR found for commit ${sha} in ${owner}/${repo}. \nThis happens when someone pushes to master without opening a PR.`
     patchedReleaseNotes = addPatchToUpcomingReleaseNote({
       repo,
       releaseNote: originReleaseNote,

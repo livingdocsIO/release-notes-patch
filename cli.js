@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.6.0 (define patch path based on data/releases.json)')
+console.log('release-notes-patch -> v1.6.1 (handle when no PR has been opened)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
