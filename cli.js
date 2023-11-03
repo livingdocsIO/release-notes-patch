@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.6.1 (handle when no PR has been opened)')
+console.log('release-notes-patch -> v1.6.2 (switch docu repo from master to main as default branch)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)

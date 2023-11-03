@@ -11,9 +11,9 @@ This repository provides a npx script to patch the release notes in our document
 
 ## Use Case 2 - Upcoming Release
 
-**Goal:** Add every merge to master to the upcoming release notes to simplify the preparation for the next release
+**Goal:** Add every merge to main to the upcoming release notes to simplify the preparation for the next release
 
-**How:** With every merge to `master` on the `livingdocs-server` and `livingdocs-editor`, the script gets the PR information and pushes it on top of the [upcoming release](https://docs.livingdocs.io/operations/releases/master/) in the documentation repository.
+**How:** With every merge to `main` on the `livingdocs-server` and `livingdocs-editor`, the script gets the PR information and pushes it on top of the upcoming release in the documentation repository.
 
 # Usage
 
