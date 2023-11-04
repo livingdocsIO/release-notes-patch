@@ -15,7 +15,9 @@ const branches = createBranchList({
   months: {before: 8, after: 4}
 })
 // add 'main' to live patch the upcoming release notes
+// add 'master' to live patch the upcoming release notes
 branches.push('main')
+branches.push('master')
 
 const targetOwner = 'livingdocsIO'
 const targetRepo = 'documentation'
@@ -39,7 +41,7 @@ module.exports = async ({token, owner, repo, sha, tag, test = false} = {}) => {
 
   let patchedReleaseNotes
   // patch release notes detail for upcoming release
-  if (release.branchName === 'main') {
+  if (release.branchName === 'master' || release.branchName === 'main') {
     const pull = await getPullBySha({owner, repo, token, sha})
     if (!pull) return `Release notes will not be extended, because no PR found for commit ${sha} in ${owner}/${repo}. \nThis happens when someone pushes to main without opening a PR.`
     patchedReleaseNotes = addPatchToUpcomingReleaseNote({

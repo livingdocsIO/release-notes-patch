@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-console.log('release-notes-patch -> v1.6.2 (switch docu repo from master to main as default branch)')
+console.log('release-notes-patch -> v1.6.3 (switch docu repo from master to main as default branch + fix)')
 const argv = require('yargs')
   .demandOption(['token', 'owner', 'repo', 'sha', 'tag'])
   .help(false)
