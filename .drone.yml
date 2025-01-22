@@ -25,7 +25,7 @@ clone:
 
 steps:
 - name: release
-  image: livingdocs/semantic-release:v1.0.0
+  image: livingdocs/semantic-release:v3.0.2
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
@@ -34,6 +34,6 @@ trigger:
   event: [push]
 ---
 kind: signature
-hmac: 577e269ae9a85a70105a2d093cdd86aab5c55c445c8b8a2a97a69e320447a2cf
+hmac: 378773d83c6dab7b8b05079507832fd2309683368700afcd7f7755c164e9649a
 
 ...
