@@ -4,7 +4,7 @@ description: Release notes for release-2021-09
 ---
 
 ## PRs to Categorize
-* [fix: fixed an editor bug](https://github.com/livingdocsIO/livingdocs-editor/pull/99)
+- [fix: fixed an editor bug](https://github.com/livingdocsIO/livingdocs-editor/pull/99)
 
 **Attention:** If you skipped one or more releases, please also check the release-notes of the skipped ones.
 
