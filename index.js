@@ -1,4 +1,3 @@
-const moment = require('moment')
 const getReleaseByCommit = require('./lib/get-release-by-commit')
 const getReleaseNote = require('./lib/get-release-note')
 const getPullBySha = require('./lib/git/get-pull-by-sha')
@@ -11,7 +10,7 @@ const getReleaseNotesOverview = require('./get-release-notes-overview')
 
 const createBranchList = require('./lib/create-branch-list')
 const branches = createBranchList({
-  time: moment(Date.now()).format('YYYY-MM'),
+  time: new Date().toISOString().slice(0, 7),
   months: {before: 8, after: 4}
 })
 // add 'main' to live patch the upcoming release notes

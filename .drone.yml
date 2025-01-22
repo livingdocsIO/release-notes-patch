@@ -4,24 +4,17 @@ name: test
 
 steps:
 - name: test
-  image: node:12
-  volumes:
-    - name: dockersocket
-      path: /var/run/docker.sock
+  image: node:22
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
   commands:
-    - npm install
-    - npm run test
-
-volumes:
-- name: dockersocket
-  host:
-    path: /var/run/docker.sock
+    - npm ci
+    - npm test
 
 trigger:
   event: [push]
+
 ---
 kind: pipeline
 name: tag
@@ -41,6 +34,6 @@ trigger:
   event: [push]
 ---
 kind: signature
-hmac: 45cd47b3a9a28ea69ff40a0fcc349dd9ffb46e0f1570c5406ca6c9739271a126
+hmac: 577e269ae9a85a70105a2d093cdd86aab5c55c445c8b8a2a97a69e320447a2cf
 
 ...
